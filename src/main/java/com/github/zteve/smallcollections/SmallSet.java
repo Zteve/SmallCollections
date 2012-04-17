@@ -1,7 +1,19 @@
 /**
  * Simple, lightweight, slow implementation of a set, with small memory footprint.
  *
- * @author Zteve.Powell
+ * Copyright 2012 Steve Powell
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.github.zteve.smallcollections;
 
@@ -14,6 +26,8 @@ import java.util.Set;
  * A {@link Set} implementation that has a small memory footprint. It is slow,
  * <em>unsynchronised</em>, and unoptimised, but if you want a lot of small
  * sets, which individually have little use, this fits the bill.
+ *
+ * @author Zteve
  */
 public class SmallSet<E> extends AbstractSet<E> {
 

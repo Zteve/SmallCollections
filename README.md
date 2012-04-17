@@ -9,8 +9,8 @@ unexpectedly interesting experience.
 This is the result.
 
 Since I (needed to) include an implementation of `SmallSet`, I've
-expanded the brief to include other collections. Of course, it now needs
-work to finish the job.
+expanded the brief to include other collections. (Of course, it now
+needs work to finish the job!)
 
 ## The Main Classes
 
@@ -19,11 +19,11 @@ The primary classes this project provides are `SmallMap<K,V>` and
 `Set<E>` respectively and include constructors (approximately) of the
 form:
 
- SmallMap(Map<K,V> map)
+    SmallMap(Map<K,V> map)
 
 and
 
- SmallSet(Set<E> set)
+    SmallSet(Set<E> set)
 
 to allow easy construction from other collections of the same form.
 
@@ -44,5 +44,38 @@ Searches, inserts, deletions, and so on, all use a linear scan of the
 arraylists and the implementation of the other `Map` methods is taken
 from `AbstractMap<K,V>`.
 
-There is no synchronisation, so this implementation is _not_
+There is no synchronisation, and these implementations are _not_
 thread-safe.
+
+## Building and running the unit tests
+
+### Pre-requisites
+
+This repository uses [Gradle](http://www.gradle.org/installation) to
+build and test the project. Gradle, in turn, needs a JDK, and accesses
+Maven for Junit.
+
+### Building and testing
+
+The command:
+
+    gradle build
+
+should build and (unit) test the jar.
+
+### Using Eclipse
+
+The project includes Eclipse `.project` and `.settings` files, so should
+work as an Eclipse project out of the box. However, there is no
+`.classpath` file supplied, since this often has explicit full file
+paths. Gradle will generate the correct one for you:
+
+    gradle eclipse
+
+will do this.
+
+## License
+
+This project is licensed under the Apache License, version 2.0 available
+from
+[http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0).
