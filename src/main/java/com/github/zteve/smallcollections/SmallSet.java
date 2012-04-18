@@ -31,8 +31,13 @@ import java.util.Set;
  */
 public class SmallSet<E> extends AbstractSet<E> {
 
-    private final ArrayList<E> arrList = new ArrayList<E>(0);
+    private ArrayList<E> arrList;
 
+    private ArrayList<E> arrList() {
+        if (this.arrList == null)
+            this.arrList = new ArrayList<E>(0);
+        return this.arrList;
+    }
     /**
      * Constructs a new, empty, <code>SmallSet</code>.
      */
@@ -49,7 +54,7 @@ public class SmallSet<E> extends AbstractSet<E> {
      *             if the specified set is null
      */
     public SmallSet(Set<? extends E> s) {
-        putAllInternal(this.arrList, s);
+        putAllInternal(this.arrList(), s);
     }
 
     private static <E> void putAllInternal(ArrayList<E> al, Set<? extends E> s) {
@@ -67,7 +72,7 @@ public class SmallSet<E> extends AbstractSet<E> {
 
     @Override
     public boolean add(E value) {
-        return putInternal(this.arrList, value);
+        return putInternal(this.arrList(), value);
     }
 
     @Override
@@ -97,7 +102,7 @@ public class SmallSet<E> extends AbstractSet<E> {
 
     @Override
     public int size() {
-        return this.arrList.size();
+        return (this.arrList == null) ? 0 : this.arrList.size();
     }
 
 }

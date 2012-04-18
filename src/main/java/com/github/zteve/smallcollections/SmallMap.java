@@ -34,9 +34,19 @@ import java.util.Set;
  */
 public class SmallMap<K, V> extends AbstractMap<K, V> {
 
-    private final ArrayList<K> keyArray = new ArrayList<K>(0);
-    private final ArrayList<V> valueArray = new ArrayList<V>(0);
+    private ArrayList<K> keyArray;
+    private ArrayList<V> valueArray;
 
+    private ArrayList<K> keyArray() {
+        if (this.keyArray == null)
+            this.keyArray = new ArrayList<K>(0);
+        return this.keyArray;
+    }
+    private ArrayList<V> valueArray() {
+        if (this.valueArray == null)
+            this.valueArray = new ArrayList<V>(0);
+        return this.valueArray;
+    }
     /**
      * Constructs a new, empty, <code>SmallMap</code>.
      */
@@ -53,7 +63,7 @@ public class SmallMap<K, V> extends AbstractMap<K, V> {
      *             if the specified map is null
      */
     public SmallMap(Map<? extends K, ? extends V> m) {
-        putAllInternal(this.keyArray, this.valueArray, m);
+        putAllInternal(this.keyArray(), this.valueArray(), m);
     }
 
     private static <K, V> void putAllInternal(ArrayList<K> ka, ArrayList<V> va,
@@ -79,7 +89,7 @@ public class SmallMap<K, V> extends AbstractMap<K, V> {
 
     @Override
     public V put(K key, V value) {
-        return putInternal(this.keyArray, this.valueArray, key, value);
+        return putInternal(this.keyArray(), this.valueArray(), key, value);
     }
 
     @Override
@@ -116,7 +126,7 @@ public class SmallMap<K, V> extends AbstractMap<K, V> {
 
             @Override
             public int size() {
-                return SmallMap.this.keyArray.size();
+                return (SmallMap.this.keyArray == null) ? 0 : SmallMap.this.keyArray.size();
             }
 
         };

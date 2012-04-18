@@ -33,13 +33,19 @@ import org.junit.rules.TestName;
  */
 public class SmallMapMemTests {
     private static final int LARGE_NUM_MAPS = 450000;
+    private static final int NOT_SO_LARGE_NUM_MAPS = 250000;
 
-    private static HashMap<String, String> newHashMap() { return new HashMap<String, String>(); }
-    private static SmallMap<String, String> newSmallMap() { return new SmallMap<String, String>(); }
+    private static HashMap<String, String> newHashMap() {
+        return new HashMap<String, String>();
+    }
+
+    private static SmallMap<String, String> newSmallMap() {
+        return new SmallMap<String, String>();
+    }
 
     @SuppressWarnings("unused")
     private Map<String, String> holdingMap;
-    private final Map<?,?>[] arrOfMaps = new Map<?,?>[LARGE_NUM_MAPS];
+    private final Map<?, ?>[] arrOfMaps = new Map<?, ?>[LARGE_NUM_MAPS];
 
     private MemSnapshot before;
     private MemSnapshot after;
@@ -59,37 +65,54 @@ public class SmallMapMemTests {
     }
 
     @Test
-    public void estimateMemUsageOne() throws Exception {
-        this.holdingMap = newSmallMap();
+    public void estimateMemUsageOneSmallMap() throws Exception {
+        this.holdingMap = populate(newSmallMap(), 1);
     }
+
     @Test
-    public void estimateMemUsageHash() throws Exception {
-        this.holdingMap = newHashMap();
+    public void estimateMemUsageOneHashMap() throws Exception {
+        this.holdingMap = populate(newHashMap(), 1);
     }
 
     @Test
     public void estimateManyEmptySmallMaps() throws Exception {
-        for (int i=0; i<LARGE_NUM_MAPS; ++i) {
+        for (int i = 0; i < LARGE_NUM_MAPS; ++i) {
             arrOfMaps[i] = newSmallMap();
         }
     }
+
     @Test
     public void estimateManyEmptyHashMaps() throws Exception {
-        for (int i=0; i<LARGE_NUM_MAPS; ++i) {
+        for (int i = 0; i < LARGE_NUM_MAPS; ++i) {
             arrOfMaps[i] = newHashMap();
         }
     }
 
     @Test
     public void estimateManyOneElementSmallMaps() throws Exception {
-        for (int i=0; i<LARGE_NUM_MAPS; ++i) {
-            arrOfMaps[i] = populate(newSmallMap(),1);
+        for (int i = 0; i < LARGE_NUM_MAPS; ++i) {
+            arrOfMaps[i] = populate(newSmallMap(), 1);
         }
     }
+
     @Test
     public void estimateManyOneElementHashMaps() throws Exception {
-        for (int i=0; i<LARGE_NUM_MAPS; ++i) {
-            arrOfMaps[i] = populate(newHashMap(),1);
+        for (int i = 0; i < LARGE_NUM_MAPS; ++i) {
+            arrOfMaps[i] = populate(newHashMap(), 1);
+        }
+    }
+
+    @Test
+    public void estimateManyTwoElementSmallMaps() throws Exception {
+        for (int i = 0; i < NOT_SO_LARGE_NUM_MAPS; ++i) {
+            arrOfMaps[i] = populate(newSmallMap(), 2);
+        }
+    }
+
+    @Test
+    public void estimateManyTwoElementHashMaps() throws Exception {
+        for (int i = 0; i < NOT_SO_LARGE_NUM_MAPS; ++i) {
+            arrOfMaps[i] = populate(newHashMap(), 2);
         }
     }
 
@@ -130,8 +153,8 @@ public class SmallMapMemTests {
         }
 
         public void print(String hdr) {
-            System.out.println(String.format(
-                    "%40s: %10d free", hdr, this.freeMemory));
+            System.out.println(String.format("%40s: %10d free", hdr,
+                    this.freeMemory));
         }
     }
 }
