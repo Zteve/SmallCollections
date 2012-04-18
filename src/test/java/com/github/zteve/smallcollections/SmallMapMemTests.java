@@ -104,7 +104,7 @@ public class SmallMapMemTests {
 
     private static void compareMss(String hdr, MemSnapshot before,
             MemSnapshot after) {
-        MemSnapshot.diff(before, after).print(hdr);
+        MemSnapshot.used(before, after).print(hdr);
     }
 
     private static class MemSnapshot {
@@ -120,8 +120,8 @@ public class SmallMapMemTests {
             this.freeMemory = freeMemory;
         }
 
-        public static MemSnapshot diff(MemSnapshot before, MemSnapshot after) {
-            return new MemSnapshot(after.freeMemory - before.freeMemory);
+        public static MemSnapshot used(MemSnapshot before, MemSnapshot after) {
+            return new MemSnapshot(before.freeMemory - after.freeMemory);
         }
 
         public static MemSnapshot take() {
