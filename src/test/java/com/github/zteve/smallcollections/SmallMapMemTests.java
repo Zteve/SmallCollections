@@ -22,6 +22,7 @@ import java.util.Map;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestName;
@@ -52,6 +53,31 @@ public class SmallMapMemTests {
 
     @Rule
     public TestName name = new TestName();
+
+    @BeforeClass
+    public static void beforeMemTests() {
+        // Shake up the free memory and garbage collector,
+        // as well as jiggling the JIT at bit.
+        Map<String, String> map1 = SmallMapMemTests.populate(
+                new SmallMap<String, String>(), 100);
+        for (int i = 0; i < 50; ++i) {
+            Map<String, String> map2 = new SmallMap<String, String>();
+            map2.putAll(map1);
+            map2.remove("key" + 20);
+            map2.clear();
+        }
+        map1.clear();
+        Map<String, String> map3 = SmallMapMemTests.populate(
+                new HashMap<String, String>(), 100);
+        for (int i = 0; i < 50; ++i) {
+            Map<String, String> map4 = new HashMap<String, String>();
+            map4.putAll(map3);
+            map4.remove("key" + 20);
+            map4.clear();
+        }
+        map3.clear();
+        System.gc();
+    }
 
     @Before
     public void beforeMss() {
