@@ -34,8 +34,8 @@ import java.util.Set;
  */
 public class SmallMap<K, V> extends AbstractMap<K, V> {
 
-    private ArrayList<K> keyArray;
-    private ArrayList<V> valueArray;
+    private ArrayList<K> keyArray = null;
+    private ArrayList<V> valueArray = null;
 
     private ArrayList<K> keyArray() {
         if (this.keyArray == null)
@@ -100,16 +100,16 @@ public class SmallMap<K, V> extends AbstractMap<K, V> {
             public Iterator<Entry<K, V>> iterator() {
                 return new Iterator<Entry<K, V>>() {
 
-                    private int position = 0;
+                    private int posNext = 0;
 
                     @Override
                     public boolean hasNext() {
-                        return this.position < SmallMap.this.size();
+                        return this.posNext < SmallMap.this.size();
                     }
 
                     @Override
                     public Entry<K, V> next() {
-                        int pos = this.position++;
+                        int pos = this.posNext++;
                         return new SimpleEntry<K, V>(
                                 SmallMap.this.keyArray.get(pos),
                                 SmallMap.this.valueArray.get(pos));
@@ -117,7 +117,7 @@ public class SmallMap<K, V> extends AbstractMap<K, V> {
 
                     @Override
                     public void remove() {
-                        int pos = --this.position;
+                        int pos = --this.posNext;
                         SmallMap.this.keyArray.remove(pos);
                         SmallMap.this.valueArray.remove(pos);
                     }

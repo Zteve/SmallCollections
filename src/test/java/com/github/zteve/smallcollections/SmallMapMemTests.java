@@ -155,32 +155,4 @@ public class SmallMapMemTests {
             MemSnapshot after) {
         MemSnapshot.used(before, after).print(hdr);
     }
-
-    private static class MemSnapshot {
-        private long freeMemory;
-
-        private static Runtime rt = Runtime.getRuntime();
-
-        private MemSnapshot() {
-            this(rt.freeMemory());
-        }
-
-        private MemSnapshot(long freeMemory) {
-            this.freeMemory = freeMemory;
-        }
-
-        public static MemSnapshot used(MemSnapshot before, MemSnapshot after) {
-            return new MemSnapshot(before.freeMemory - after.freeMemory);
-        }
-
-        public static MemSnapshot take() {
-            System.gc();
-            return new MemSnapshot();
-        }
-
-        public void print(String hdr) {
-            System.out.println(String.format("%40s: %10d free", hdr,
-                    this.freeMemory));
-        }
-    }
 }

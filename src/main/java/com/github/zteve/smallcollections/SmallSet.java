@@ -31,7 +31,7 @@ import java.util.Set;
  */
 public class SmallSet<E> extends AbstractSet<E> {
 
-    private ArrayList<E> arrList;
+    private ArrayList<E> arrList = null;
 
     private ArrayList<E> arrList() {
         if (this.arrList == null)
@@ -79,22 +79,22 @@ public class SmallSet<E> extends AbstractSet<E> {
     public Iterator<E> iterator() {
         return new Iterator<E>() {
 
-            private int position = 0;
+            private int posNext = 0;
 
             @Override
             public boolean hasNext() {
-                return this.position < SmallSet.this.size();
+                return this.posNext < SmallSet.this.size();
             }
 
             @Override
             public E next() {
-                int pos = this.position++;
+                int pos = this.posNext++;
                 return SmallSet.this.arrList.get(pos);
             }
 
             @Override
             public void remove() {
-                int pos = --this.position;
+                int pos = --this.posNext;
                 SmallSet.this.arrList.remove(pos);
             }
         };
