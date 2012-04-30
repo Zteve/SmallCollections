@@ -20,7 +20,7 @@ package com.github.zteve.smallcollections;
 class MemSnapshot {
     private long freeMemory;
 
-    private static Runtime rt = Runtime.getRuntime();
+    private final static Runtime rt = Runtime.getRuntime();
 
     private MemSnapshot() {
         this(rt.freeMemory());
@@ -35,8 +35,15 @@ class MemSnapshot {
     }
 
     public static MemSnapshot take() {
-        System.gc();
+        rt.gc();
+        rt.gc();  // and again!
         return new MemSnapshot();
+    }
+
+    public void retake() {
+        rt.gc();
+        rt.gc();  // and again!
+        this.freeMemory = rt.freeMemory();
     }
 
     public void print(String hdr) {
