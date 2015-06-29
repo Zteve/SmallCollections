@@ -1,16 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d6370e44-023a-4152-a752-65b794d72950" name="Default" comment="Update to use Java 1.8">
+    <list default="true" id="d6370e44-023a-4152-a752-65b794d72950" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/output/SetMemTable.csv" afterPath="$PROJECT_DIR$/build/output/SetMemTable.csv" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SmallCollections.iws" afterPath="$PROJECT_DIR$/SmallCollections.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/github/zteve/smallcollections/SmallMap.java" afterPath="$PROJECT_DIR$/src/main/java/com/github/zteve/smallcollections/SmallMap.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/github/zteve/smallcollections/SmallMapMemTests.java" afterPath="$PROJECT_DIR$/src/test/java/com/github/zteve/smallcollections/SmallMapMemTests.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/github/zteve/smallcollections/SmallSet.java" afterPath="$PROJECT_DIR$/src/main/java/com/github/zteve/smallcollections/SmallSet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/github/zteve/smallcollections/SmallSetMemTests.java" afterPath="$PROJECT_DIR$/src/test/java/com/github/zteve/smallcollections/SmallSetMemTests.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/github/zteve/smallcollections/SmallSetTests.java" afterPath="$PROJECT_DIR$/src/test/java/com/github/zteve/smallcollections/SmallSetTests.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/github/zteve/smallcollections/TableSmallMapMemTests.java" afterPath="$PROJECT_DIR$/src/test/java/com/github/zteve/smallcollections/TableSmallMapMemTests.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/github/zteve/smallcollections/TableSmallSetMemTests.java" afterPath="$PROJECT_DIR$/src/test/java/com/github/zteve/smallcollections/TableSmallSetMemTests.java" />
     </list>
     <ignored path="SmallCollections.iws" />
     <ignored path=".idea/workspace.xml" />
