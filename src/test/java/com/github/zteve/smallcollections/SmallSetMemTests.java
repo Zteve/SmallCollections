@@ -44,15 +44,12 @@ public class SmallSetMemTests {
         return new SmallSet<String>();
     }
 
-    @SuppressWarnings("unused")
-    private Set<String> holdingSet;
     private final Set<?>[] arrOfSets = new Set<?>[LARGE_NUM_SETS];
 
     private MemSnapshot before;
-    private MemSnapshot after;
 
     @Rule
-    public TestName name = new TestName();
+    public final TestName name = new TestName();
 
     @BeforeClass
     public static void beforeMemTests() {
@@ -86,18 +83,17 @@ public class SmallSetMemTests {
 
     @After
     public void afterMss() {
-        this.after = MemSnapshot.take();
-        compareMss(name.getMethodName(), this.before, this.after);
+        compareMss(name.getMethodName(), this.before, MemSnapshot.take());
     }
 
     @Test
     public void estimateMemUsageOneSmallSet() throws Exception {
-        this.holdingSet = populate(newSmallSet(), 1);
+        populate(newSmallSet(), 1);
     }
 
     @Test
     public void estimateMemUsageOneHashSet() throws Exception {
-        this.holdingSet = populate(newHashSet(), 1);
+        populate(newHashSet(), 1);
     }
 
     @Test

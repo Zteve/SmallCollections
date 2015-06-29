@@ -44,15 +44,12 @@ public class SmallMapMemTests {
         return new SmallMap<String, String>();
     }
 
-    @SuppressWarnings("unused")
-    private Map<String, String> holdingMap;
     private final Map<?, ?>[] arrOfMaps = new Map<?, ?>[LARGE_NUM_MAPS];
 
     private MemSnapshot before;
-    private MemSnapshot after;
 
     @Rule
-    public TestName name = new TestName();
+    public final TestName name = new TestName();
 
     @BeforeClass
     public static void beforeMemTests() {
@@ -86,18 +83,17 @@ public class SmallMapMemTests {
 
     @After
     public void afterMss() {
-        this.after = MemSnapshot.take();
-        compareMss(name.getMethodName(), this.before, this.after);
+        compareMss(name.getMethodName(), this.before, MemSnapshot.take());
     }
 
     @Test
     public void estimateMemUsageOneSmallMap() throws Exception {
-        this.holdingMap = populate(newSmallMap(), 1);
+        populate(newSmallMap(), 1);
     }
 
     @Test
     public void estimateMemUsageOneHashMap() throws Exception {
-        this.holdingMap = populate(newHashMap(), 1);
+        populate(newHashMap(), 1);
     }
 
     @Test

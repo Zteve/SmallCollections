@@ -60,21 +60,14 @@ public class TableSmallMapMemTests {
         }
     }
 
+    @FunctionalInterface
     private interface MapFactory {
         Map<String, String> generate();
     }
 
-    private final static MapFactory smallMapFactory = new MapFactory() {
-        public Map<String, String> generate() {
-            return new SmallMap<String, String>();
-        }
-    };
+    private final static MapFactory smallMapFactory = SmallMap::new;
 
-    private final static MapFactory hashMapFactory = new MapFactory() {
-        public Map<String, String> generate() {
-            return new HashMap<String, String>();
-        }
-    };
+    private final static MapFactory hashMapFactory = HashMap::new;
 
     private final static MemSnapshot before = MemSnapshot.take();
     private final static MemSnapshot after = MemSnapshot.take();
@@ -140,7 +133,7 @@ public class TableSmallMapMemTests {
         generateMemTable(hashMapFactory, 2, 6, "PairHashMaps");
     }
 
-    private final static void generateMemTable(MapFactory factory, int setSize,
+    private static void generateMemTable(MapFactory factory, int setSize,
             int testNum, String hdr) throws Exception {
         tableHdrs[testNum] = hdr;
         for (int i = 0; i < NUM_IN_TABLE; i++) {
@@ -153,14 +146,14 @@ public class TableSmallMapMemTests {
         }
     }
 
-    private final static void fillArrayMaps(Map<?,?>[] arr, int num, int size,
+    private static void fillArrayMaps(Map<?,?>[] arr, int num, int size,
             MapFactory mapFactory) {
         for (int i = 0; i < num; ++i) {
             arr[i] = populate(mapFactory.generate(), size);
         }
     }
 
-    private final static Map<String, String> populate(Map<String,String> m, int num) {
+    private static Map<String, String> populate(Map<String,String> m, int num) {
         for (int i = 0; i < num; i++) {
             String key = "key" + i;
             String value = "value" + i;

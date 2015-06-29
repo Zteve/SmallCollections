@@ -140,7 +140,7 @@ public class TableSmallSetMemTests {
         generateMemTable(hashSetFactory, 2, 6, "PairHashSets");
     }
 
-    private final static void generateMemTable(SetFactory factory, int setSize,
+    private static void generateMemTable(SetFactory factory, int setSize,
             int testNum, String hdr) throws Exception {
         tableHdrs[testNum] = hdr;
         for (int i = 0; i < NUM_IN_TABLE; i++) {
@@ -153,14 +153,14 @@ public class TableSmallSetMemTests {
         }
     }
 
-    private final static void fillArraySets(Set<?>[] arr, int num, int size,
+    private static void fillArraySets(Set<?>[] arr, int num, int size,
             SetFactory setFactory) {
         for (int i = 0; i < num; ++i) {
             arr[i] = populate(setFactory.generate(), size);
         }
     }
 
-    private final static Set<String> populate(Set<String> s, int num) {
+    private static Set<String> populate(Set<String> s, int num) {
         for (int i = 0; i < num; i++) {
             String value = "value" + i;
             s.add(value);
