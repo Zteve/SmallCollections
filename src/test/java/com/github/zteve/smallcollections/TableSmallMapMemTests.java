@@ -93,10 +93,10 @@ public class TableSmallMapMemTests {
             fos.write(sb.append('\n').toString().getBytes("US-ASCII"));
         }
 
-        for (int i = 0; i < table.length; ++i) {
-            StringBuilder sb = new StringBuilder().append(table[i][0]);
+        for (long[] aTable : table) {
+            StringBuilder sb = new StringBuilder().append(aTable[0]);
             for (int j = 1; j <= NUM_TESTS; ++j) {
-                sb.append(',').append(table[i][j]);
+                sb.append(',').append(aTable[j]);
             }
             fos.write(sb.append('\n').toString().getBytes("US-ASCII"));
         }

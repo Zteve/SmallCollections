@@ -37,11 +37,11 @@ public class SmallMapMemTests {
     private static final int NOT_SO_LARGE_NUM_MAPS = 250000;
 
     private static HashMap<String, String> newHashMap() {
-        return new HashMap<String, String>();
+        return new HashMap<>();
     }
 
     private static SmallMap<String, String> newSmallMap() {
-        return new SmallMap<String, String>();
+        return new SmallMap<>();
     }
 
     private final Map<?, ?>[] arrOfMaps = new Map<?, ?>[LARGE_NUM_MAPS];
@@ -56,18 +56,18 @@ public class SmallMapMemTests {
         // Shake up the free memory and garbage collector,
         // as well as jiggling the JIT at bit.
         Map<String, String> map1 = SmallMapMemTests.populate(
-                new SmallMap<String, String>(), 100);
+                new SmallMap<>(), 100);
         for (int i = 0; i < 50; ++i) {
-            Map<String, String> map2 = new SmallMap<String, String>();
+            Map<String, String> map2 = new SmallMap<>();
             map2.putAll(map1);
             map2.remove("key" + 20);
             map2.clear();
         }
         map1.clear();
         Map<String, String> map3 = SmallMapMemTests.populate(
-                new HashMap<String, String>(), 100);
+                new HashMap<>(), 100);
         for (int i = 0; i < 50; ++i) {
-            Map<String, String> map4 = new HashMap<String, String>();
+            Map<String, String> map4 = new HashMap<>();
             map4.putAll(map3);
             map4.remove("key" + 20);
             map4.clear();

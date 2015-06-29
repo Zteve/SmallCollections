@@ -35,7 +35,7 @@ public class SmallSet<E> extends AbstractSet<E> {
 
     private ArrayList<E> arrList() {
         if (this.arrList == null)
-            this.arrList = new ArrayList<E>(0);
+            this.arrList = new ArrayList<>(0);
         return this.arrList;
     }
     /**
@@ -58,9 +58,7 @@ public class SmallSet<E> extends AbstractSet<E> {
     }
 
     private static <E> void putAllInternal(ArrayList<E> al, Set<? extends E> s) {
-        for (Iterator<? extends E> i = s.iterator(); i.hasNext();) {
-            putInternal(al, i.next());
-        }
+        for (E value : s) putInternal(al, value);
     }
 
     private static <E> boolean putInternal(ArrayList<E> al, E value) {

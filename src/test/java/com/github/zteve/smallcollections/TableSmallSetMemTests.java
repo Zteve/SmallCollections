@@ -64,17 +64,9 @@ public class TableSmallSetMemTests {
         Set<String> generate();
     }
 
-    private final static SetFactory smallSetFactory = new SetFactory() {
-        public Set<String> generate() {
-            return new SmallSet<String>();
-        }
-    };
+    private final static SetFactory smallSetFactory = SmallSet::new;
 
-    private final static SetFactory hashSetFactory = new SetFactory() {
-        public Set<String> generate() {
-            return new HashSet<String>();
-        }
-    };
+    private final static SetFactory hashSetFactory = HashSet::new;
 
     private final static MemSnapshot before = MemSnapshot.take();
     private final static MemSnapshot after = MemSnapshot.take();
@@ -100,10 +92,10 @@ public class TableSmallSetMemTests {
             fos.write(sb.append('\n').toString().getBytes("US-ASCII"));
         }
 
-        for (int i = 0; i < table.length; ++i) {
-            StringBuilder sb = new StringBuilder().append(table[i][0]);
+        for (long[] aTable : table) {
+            StringBuilder sb = new StringBuilder().append(aTable[0]);
             for (int j = 1; j <= NUM_TESTS; ++j) {
-                sb.append(',').append(table[i][j]);
+                sb.append(',').append(aTable[j]);
             }
             fos.write(sb.append('\n').toString().getBytes("US-ASCII"));
         }

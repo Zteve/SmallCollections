@@ -37,7 +37,7 @@ public class SmallSetTests {
     private static final String TEST_VALUE_2 = "SecondTestValue";
     private static final String NOT_VALUE = "Not in the Set";
     private static final int POPULATION = 100;
-    private final Set<String> ss = new SmallSet<String>();
+    private final Set<String> ss = new SmallSet<>();
 
     @Test
     public void empty() throws Exception {
@@ -103,7 +103,7 @@ public class SmallSetTests {
     @Test
     public void initWithSmallSet() throws Exception {
         Set<String> copySet = populate(this.ss, POPULATION);
-        Set<String> testSet = new HashSet<String>(this.ss);
+        Set<String> testSet = new HashSet<>(this.ss);
         assertEquals("SmallSet doesn't initialise HashSet correctly", copySet,
                 testSet);
     }
@@ -111,7 +111,7 @@ public class SmallSetTests {
     @Test
     public void initSmallSetWithSet() throws Exception {
         Set<String> set = populate(POPULATION);
-        SmallSet<String> testSmallSet = new SmallSet<String>(set);
+        SmallSet<String> testSmallSet = new SmallSet<>(set);
         assertEquals("HashSet doesn't initialise SmallSet correctly", set,
                 testSmallSet);
     }
@@ -121,7 +121,7 @@ public class SmallSetTests {
     }
 
     private static Set<String> populate(Set<String> s, int num) {
-        Set<String> copySet = new HashSet<String>();
+        Set<String> copySet = new HashSet<>();
         for (int i = 0; i < num; i++) {
             String value = "value" + i;
             if (s != null)

@@ -37,11 +37,11 @@ public class SmallSetMemTests {
     private static final int NOT_SO_LARGE_NUM_SETS = 250000;
 
     private static HashSet<String> newHashSet() {
-        return new HashSet<String>();
+        return new HashSet<>();
     }
 
     private static SmallSet<String> newSmallSet() {
-        return new SmallSet<String>();
+        return new SmallSet<>();
     }
 
     private final Set<?>[] arrOfSets = new Set<?>[LARGE_NUM_SETS];
@@ -56,18 +56,18 @@ public class SmallSetMemTests {
         // Shake up the free memory and garbage collector,
         // as well as jiggling the JIT at bit.
         Set<String> set1 = SmallSetMemTests.populate(
-                new SmallSet<String>(), 100);
+                new SmallSet<>(), 100);
         for (int i = 0; i < 50; ++i) {
-            Set<String> set2 = new SmallSet<String>();
+            Set<String> set2 = new SmallSet<>();
             set2.addAll(set1);
             set2.remove("value" + 20);
             set2.clear();
         }
         set1.clear();
         Set<String> set3 = SmallSetMemTests.populate(
-                new HashSet<String>(), 100);
+                new HashSet<>(), 100);
         for (int i = 0; i < 50; ++i) {
-            Set<String> set4 = new HashSet<String>();
+            Set<String> set4 = new HashSet<>();
             set4.addAll(set3);
             set4.remove("value" + 20);
             set4.clear();

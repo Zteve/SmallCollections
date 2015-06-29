@@ -39,12 +39,12 @@ public class SmallMap<K, V> extends AbstractMap<K, V> {
 
     private ArrayList<K> keyArray() {
         if (this.keyArray == null)
-            this.keyArray = new ArrayList<K>(0);
+            this.keyArray = new ArrayList<>(0);
         return this.keyArray;
     }
     private ArrayList<V> valueArray() {
         if (this.valueArray == null)
-            this.valueArray = new ArrayList<V>(0);
+            this.valueArray = new ArrayList<>(0);
         return this.valueArray;
     }
     /**
@@ -68,11 +68,8 @@ public class SmallMap<K, V> extends AbstractMap<K, V> {
 
     private static <K, V> void putAllInternal(ArrayList<K> ka, ArrayList<V> va,
             Map<? extends K, ? extends V> m) {
-        for (Iterator<? extends Map.Entry<? extends K, ? extends V>> i = m
-                .entrySet().iterator(); i.hasNext();) {
-            Map.Entry<? extends K, ? extends V> e = i.next();
+        for (Entry<? extends K, ? extends V> e : m.entrySet())
             putInternal(ka, va, e.getKey(), e.getValue());
-        }
     }
 
     private static <K, V> V putInternal(ArrayList<K> ka, ArrayList<V> va,
@@ -110,7 +107,7 @@ public class SmallMap<K, V> extends AbstractMap<K, V> {
                     @Override
                     public Entry<K, V> next() {
                         int pos = this.posNext++;
-                        return new SimpleEntry<K, V>(
+                        return new SimpleEntry<>(
                                 SmallMap.this.keyArray.get(pos),
                                 SmallMap.this.valueArray.get(pos));
                     }
